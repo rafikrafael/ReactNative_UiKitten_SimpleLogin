@@ -52,12 +52,14 @@ const reducer = (prevState, action) => {
         isLoading: false,
       };
     case 'SIGN_IN':
+      AsyncStorage.setItem('userToken', action.token);
       return {
         ...prevState,
         isSignout: false,
         userToken: action.token,
       };
     case 'SIGN_OUT':
+      AsyncStorage.removeItem('userToken');
       return {
         ...prevState,
         isSignout: true,
